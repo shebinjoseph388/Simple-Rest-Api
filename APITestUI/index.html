@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1">
+	<title>REST API</title>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+	<table class="table" id="postmessage">
+		<caption>PostMessages</caption>
+   			<tr>
+    			<th>ID</th>
+    			<th>Title</th>
+    			<th>Message</th>
+			</tr>
+   	</table>
+
+   	<div id="menu" class="square">
+   		<i class="arrow"></i>
+   		<div id="menuHeader">REST API TEST MENU</div>
+   		<button class="button" id="getAll">GET ALL Post Messages</button>
+
+   		<input class="input" type="text" id="name" placeholder="Name"/>
+   		<button class="button" id="getPosts">FIND Post Message</button>
+
+   		<input class="input" type="text" id="title" placeholder="Title"/>
+   		<input class="input" type="text" id="content" placeholder="Message"/>
+   		<button class="button" id="newPost">SUBMIT DETAILS</button>
+
+   		<input class="input" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" id="id" placeholder="Post ID"/>
+   		<input class="input" type="text" id="title" placeholder="Title"/>
+   		<button class="button" id="deletePost">DELETE PostMessage</button>
+   	</div>
+
+</body>
+<script type="text/javascript" src="js/getAllPostMessages.js"></script>
+<script type="text/javascript" src="js/findPostMessage.js"></script>
+<script type="text/javascript" src="js/newPostMessage.js"></script>
+<script type="text/javascript" src="js/deletePostMessage.js"></script>
+</html>
