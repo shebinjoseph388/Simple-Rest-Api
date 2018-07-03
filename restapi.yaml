@@ -1,0 +1,47 @@
+---
+ - hosts: rest-api
+   sudo: yes
+   vars: 
+    git_cache_path: /tmp/restapi
+    releases_dir: /var/www/releases
+    project_user: ubuntu
+    git_version: v7.0.0
+    dbhost    : test-rds-db-srv.test.eu-west-1.rds.amazonaws.com
+    dbuser    : restapi_db_admin
+    dbpasswd  : rest#Tango*2018 
+    domainname : api.domain.com
+    dbname     : posts 
+   tasks:
+    - name: Fetch repo updates from github
+      git: >
+       repo=https://github.com/shebinjoseph388/Simple-Rest-Api.git
+       dest={{ git_cache_path }}
+       version=master
+       accept_hostkey=yes
+    - name: Get Release Timestamp
+      command: date +%Y%m%d%H%M%S
+      register: timestamp
+    - name: Create New release directory
+      command: echo "{{ releases_dir }}/{{ timestamp.stdout }}"
+      register: release_path
+    - name: Create release directory
+      file: >
+        state=directory
+        owner={{ project_user }}
+        group={{ project_user }}
+        recurse=yes
+        path={{ release_path.stdout }}
+    - name: Copy files to release directory
+      command: rsync -avz -avz --exclude-from '{{ git_cache_path }}/.git' {{ git_cache_path }}/ {{ release_path.stdout }}
+    - name: copy 1st configuration file (http)
+      template: src=nginx-http.j2 dest=/etc/nginx/sites-enabled/restapi{{ domainname }}.conf
+    - name: Restart services
+      service: name=nginx state=restarted
+    - name: Craete mysql db 
+      command: mysql -h {{ dbhost }} -u{{ dbuser }} -p{{ dbpasswd }}  -Ne "create database {{ dbname }};"
+    - name: Granting privileges to dbuser to DB
+      command: mysql -h {{ dbhost }} -u{{ dbuser }} -p{{ dbpasswd }}  -Ne "grant all privileges on {{ dbname }}.* to dbuser@'%';"
+    - name: Flush Mysql Privilges
+      command: mysql -h {{ dbhost }} -u{{ dbuser }} -p{{ dbpasswd }}  -Ne "flush privileges;"
+    - name: Change Ownership
+      command: chown ubuntu:ubuntu /var/www/{{ apiendpointname }} -R
