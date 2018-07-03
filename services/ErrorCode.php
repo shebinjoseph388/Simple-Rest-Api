@@ -19,5 +19,6 @@ class ErrorCode{
 	const POST_DELETE_FAIL = 13;       
 	const PAGE_SIZE_TO_BIG = 14;
 	
-	const SERVER_INTERNAL_ERROR = 15;          
+	const SERVER_INTERNAL_ERROR = 15;    
+	const DATABASE_ERROR = 16;       
 }

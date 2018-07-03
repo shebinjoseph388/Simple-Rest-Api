@@ -1,0 +1,2 @@
+RewriteEngine On # Turn on the rewriting engine
+RewriteRule ^api/postmessage/(.*)?$ process.php?uri=$1 [NC,L]

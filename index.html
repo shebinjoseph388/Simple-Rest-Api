@@ -5,6 +5,10 @@
 	<title>REST API</title>
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="js/getAllPostMessage.js"></script>
+	<script type="text/javascript" src="js/findPostMessage.js"></script>
+	<script type="text/javascript" src="js/newPostMessage.js"></script>
+	<script type="text/javascript" src="js/deletePostMessage.js"></script>
 </head>
 
 <body>
@@ -22,21 +26,17 @@
    		<div id="menuHeader">REST API TEST MENU</div>
    		<button class="button" id="getAll">GET ALL Post Messages</button>
 
-   		<input class="input" type="text" id="name" placeholder="Name"/>
+   		<input class="input" type="text" id="find_title" placeholder="Message ID"/>
    		<button class="button" id="getPosts">FIND Post Message</button>
 
    		<input class="input" type="text" id="title" placeholder="Title"/>
    		<input class="input" type="text" id="content" placeholder="Message"/>
    		<button class="button" id="newPost">SUBMIT DETAILS</button>
 
-   		<input class="input" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" id="id" placeholder="Post ID"/>
-   		<input class="input" type="text" id="title" placeholder="Title"/>
+   		<input class="input" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" id="post_id" placeholder="Post ID"/>
    		<button class="button" id="deletePost">DELETE PostMessage</button>
    	</div>
 
 </body>
-<script type="text/javascript" src="js/getAllPostMessages.js"></script>
-<script type="text/javascript" src="js/findPostMessage.js"></script>
-<script type="text/javascript" src="js/newPostMessage.js"></script>
-<script type="text/javascript" src="js/deletePostMessage.js"></script>
+
 </html>
