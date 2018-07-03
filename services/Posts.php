@@ -66,8 +66,8 @@ class Posts {
 		$stmt->bindParam(':id',$postId);
 		$stmt->execute();
 		$postMessage = $stmt->fetch(PDO::FETCH_ASSOC);
-    $title = $postMessage['title'];
-    $postMessage['palindrom'] = $this->checkPalindrom($title);
+		$title = $postMessage['title'];
+		$postMessage['palindrom'] = $this->checkPalindrom($title);
 		if(empty($postMessage)){
 			throw new Exception("post message not found", ErrorCode::POST_NOT_FOUND);
 		}

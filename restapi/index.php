@@ -192,7 +192,6 @@ class RestAPI {
     }
 
     private function _handlePostDelete(){
-		// $user = $this->_userLogin($_SERVER['PHP_AUTH_USER'],$_SERVER['PHP_AUTH_PW']);
 		try {
 			$postMessage = $this->_postMessage->view($this->_id);
 			if($postMessage['user_id'] != 1){
@@ -240,7 +239,7 @@ class RestAPI {
 	 */
 	private function _handlePostView(){
 		try {
-      header("Content-type:application/json");
+      		header("Content-type:application/json");
 			return [$this->_postMessage->view($this->_id)];
 		} catch (Exception $e) {
 			if($e->getMessage() == ErrorCode::POST_NOT_FOUND){
@@ -252,7 +251,7 @@ class RestAPI {
 	}
 
     /**
-	 * User authentication
+	 * User authentication , Incomplete module
 	 *
 	 * @param      <type>  $PHP_AUTH_USER  The php auth user
 	 * @param      <type>  $PHP_AUTH_PW    The php auth pw
